@@ -8,4 +8,7 @@ watchify \
 	-x react-dom \
 	-x react \
 	-t babelify \
+	--presets es2015
 	$SRCD/app.js
+
+#	--plugins babel-preset-es2015 \

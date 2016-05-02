@@ -6,6 +6,7 @@ browserify -o $OUTD/bundle.js \
 		   -x react-dom \
 		   -x react \
 		   -t babelify \
+		   --presets es2015 \
 		   $SRCD/app.js
 
 uglifyjs --compress \

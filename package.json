@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/bttl/web/issues"
   },
-  "homepage": "https://github.com/bttl/web#readme",  
+  "homepage": "https://github.com/bttl/web#readme",
   "dependencies": {
     "react": "^15.0.2",
     "react-dom": "^15.0.2",

@@ -1,9 +1,11 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 
 // For babel and es2015+, make sure to import the file:
 import 'whatwg-fetch';
+
+import {Component, Btn, View, Sts} from './comps';
+
+import {MaterialItem} from 'aaa';
 
 // import {
 //   Text,
@@ -18,6 +20,9 @@ import 'whatwg-fetch';
 // 	width: 272
 //   }
 // });
+
+var gHeight = 350;
+var gWidth = 150;
 
 var queryString = function () {
   // This function is anonymous, is executed immediately and
@@ -45,9 +50,7 @@ var queryString = function () {
 var vkId = queryString.viewer_id;
 var authKey = queryString.auth_key;
 
-export class MyApp extends Component {
-
-  
+export class MyApp extends Component {  
   constructor(props){
 	super(props);
 
@@ -58,6 +61,10 @@ export class MyApp extends Component {
   }
 
   componentDidMount() {
+	this.fetchData();
+  }
+
+  fetchData() {
 	if (!vkId || !authKey) {
 	  console.log('no viewer_id or auth_key');
 	  return;
@@ -65,9 +72,8 @@ export class MyApp extends Component {
 
 	fetch('./v1/material/get-list?vk_id=' + vkId +
 		  '&auth_key=' + authKey)
-	  .then((response) => {
-		return response.json();
-	  }).then((json) => {
+	  .then((response) => response.json())
+	  .then((json) => {
 		console.log('parsed json', json);
 		if (json.errkey) {
 		  alert('Непредвиденная ошибка: попробуйте позже');
@@ -81,67 +87,40 @@ export class MyApp extends Component {
 		alert('Непредвиденная ошибка: попробуйте позже');
 		return;
 	  });
+	  //.done();
   }
 
-  handleClick(materialId, mname, create_date) {
-	if (!vkId || !authKey) {
-	  console.log('no viewer_id or auth_key');
-	  return;
-	}
-	
-	fetch('./v1/material/get-text?id=' + materialId +
-		  '&vk_id=' + vkId +
-		  '&auth_key=' + authKey)
-	  .then((response) => {
-		return response.json();
-	  }).then((json) => {
-		console.log('parsed json', json);
-		if (json.errkey) {
-		  alert('Непредвиденная ошибка: попробуйте позже');
-		  return;
-		}
-		
-		this.setState({
-		  text: mname + '\n\n' + json.mcontent + '\n\n' + create_date.substring(0, 10)
-		});
-	  }).catch((ex) => {
-		console.log('parsing failed', ex);
-		alert('Непредвиденная ошибка: попробуйте позже');
-		return;
-	  });
+  setCurrentText(currentText) {
+	this.setState({
+	  text: currentText
+	});
   }
 
-  render() {
-	var gHeight = 350;
-	var gWidth = 150;
-	
+  render() {	
 	var list = React.DOM.ol({
-	  style: {
-		margin: 0,
-		padding: 0,
-		float: "right",
-		maxWidth: gWidth,
-		height: gHeight,
-		overflow: "auto",
-		overflowX: "hidden"
-	  }
+	  style: styles.list
 	}, this.state.arr.map((item, ind) => {
-	  var btn = React.DOM.button({
-		onClick: () => this.handleClick(item.id, item.mname, item.create_date),
-		style: {
-		  width: "100%",
-		  minHeight: 36
-		}
-	  }, item.mname);
+	  var materialItem = React.createElement(MaterialItem, {
+		row: item,
+		vkId: vkId,
+		authKey: authKey,
+		apiHost: '.',
+		cmp: {
+		  btn: Btn,
+		  view: View,
+		  sts: Sts
+		},
+		setCurrentText: (content) => this.setCurrentText(content)
+	  });
 	  
 	  return React.DOM.li({
 		key: item.id
-	  }, btn);
+	  }, materialItem);
 	}));
 	
 	var textWrap = React.DOM.textarea({
 	  value: this.state.text,
-	  placeholder: 'Выберите текст из списка справа',
+	  placeholder: 'Выберите текст из списка справа!',
 	  style: {
 		padding: 4,
 		width: "95%",
@@ -149,7 +128,7 @@ export class MyApp extends Component {
 	  }
 	});
 
-	var divTextWrap = React.DOM.div({
+	var divTextWrap = React.createElement(View, {
 	  style: {
 		paddingRight: gWidth,
 		margin: 0
@@ -164,3 +143,19 @@ export class MyApp extends Component {
 	}, list, divTextWrap) : null;
   }
 }
+
+
+var styles = Sts.create({
+  container: {
+	backgroundColor: 'green'
+  },
+  list: {
+	margin: 0,
+	padding: 0,
+	maxWidth: gWidth,
+	height: gHeight,
+	float: "right",
+	overflow: "auto",
+	overflowX: "hidden"
+  }
+});
