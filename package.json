@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "version": "0.2.0",
+  "description": "Web client",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bttl/web.git"
+  },
+  "author": "bttl",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/bttl/web/issues"
+  },
+  "homepage": "https://github.com/bttl/web#readme",  
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.7",
+    "babel-preset-es2015": "^6.6.0",
+    "babelify": "^7.3.0"
+  },
+  "globalDependencies": {
+	"html-minifier": "x",
+	"uglify-js": "x",
+	"browserify": "x",
+	"watchify": "x"
+  }
+}
