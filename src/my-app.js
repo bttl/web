@@ -7,6 +7,10 @@ import {Component, Btn, View, Sts} from './comps';
 
 import {MaterialItem} from 'aaa';
 
+var cmpMaterialItem = React.createFactory(MaterialItem);
+
+//console.log('MaterialItem', MaterialItem);
+
 // import {
 //   Text,
 //   Image,
@@ -22,7 +26,7 @@ import {MaterialItem} from 'aaa';
 // });
 
 var gHeight = 350;
-var gWidth = 150;
+var gWidth = 140;
 
 var queryString = function () {
   // This function is anonymous, is executed immediately and
@@ -100,7 +104,7 @@ export class MyApp extends Component {
 	var list = React.DOM.ol({
 	  style: styles.list
 	}, this.state.arr.map((item, ind) => {
-	  var materialItem = React.createElement(MaterialItem, {
+	  var materialItem = cmpMaterialItem({
 		row: item,
 		vkId: vkId,
 		authKey: authKey,
@@ -152,7 +156,7 @@ var styles = Sts.create({
   list: {
 	margin: 0,
 	padding: 0,
-	maxWidth: gWidth,
+	width: gWidth,
 	height: gHeight,
 	float: "right",
 	overflow: "auto",

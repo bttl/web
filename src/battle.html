@@ -22,23 +22,30 @@
 	  overflow: auto;
 	  overflow-x: hidden;
 	  }
+
+	  .wrap-like {
+	  width: 180px; margin: 0 auto; padding: 16px;
+	  }
+
+	  .header {
+	  text-align: center; margin: 8px;
+	  font-weight: bold; font-size: 1.1rem;
+	  }
 	</style>
   </head>
   <body>
 	<div class="wrap">
-	  <div style="text-align: center; margin: 8px; font-weight: bold; font-size: 1.1rem">
+	  <div class="header">
 		Баттл на реконструкции. Дата запуска: ХЗ
 	  </div>
-	  <div id="example"></div>
-	  
+	  <div id="example"></div>	 
 	  <div id="vk_comments"></div>
-
-	  <div style="width: 180px; margin: 0 auto; padding: 16px;">
+	  <div class="wrap-like">
 		<div id="vk_like"></div>
 	  </div>
 	</div>
 	<script src="//vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
 	<script src="./react-with-dom.min.js"></script>
-	<script src="./bundle.js"></script>
+	<script src="./bundle.min.js"></script>
   </body>
 </html>
