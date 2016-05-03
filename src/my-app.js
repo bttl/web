@@ -150,9 +150,6 @@ export class MyApp extends Component {
 
 
 var styles = Sts.create({
-  container: {
-	backgroundColor: 'green'
-  },
   list: {
 	margin: 0,
 	padding: 0,
