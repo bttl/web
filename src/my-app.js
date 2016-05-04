@@ -63,7 +63,6 @@ export class MyApp extends React.Component {
       }).catch((ex) => {
         console.log('parsing failed', ex);
         alert('Непредвиденная ошибка: попробуйте позже');
-        return;
       });
       //.done();
   }

@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 // For babel and es2015+, make sure to import the file:
 import 'whatwg-fetch';
 
-import {MyApp} from './my-app.js';
+//import {MyApp} from './my-app.js';
+import {Workspace} from 'aaa';
 
 import cmp, {sts} from 'aweb';
 
 // If you're using a module system, the recommended solution is to export the class and create the factory on the requiring side.
-var MyAppComponent = React.createFactory(MyApp);
 
 var queryString = function () {
   // This function is anonymous, is executed immediately and
@@ -38,11 +38,12 @@ var vkId = queryString.viewer_id;
 var authKey = queryString.auth_key;
 
 ReactDOM.render(
-  MyAppComponent({
+  React.createElement(Workspace, {
     sts: sts,
     cmp: cmp,
     vkId: vkId,
-    authKey: authKey
+    authKey: authKey,
+    apiHost: '.'
   }),
   document.getElementById('example')
 );
