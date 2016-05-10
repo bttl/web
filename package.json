@@ -14,6 +14,9 @@
   },
   "homepage": "https://github.com/bttl/web#readme",
   "dependencies": {
+    "es6-promise": "^3.1.2",
+    "flux": "^2.1.1",
+    "object-assign": "^4.1.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "whatwg-fetch": "^1.0.0"
